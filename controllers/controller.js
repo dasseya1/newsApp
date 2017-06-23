@@ -219,3 +219,5 @@ router.post("/comments/one/:id", function(req, res) {
 
   console.log('comment removed');
 });
+
+module.exports = router;
