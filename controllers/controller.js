@@ -12,7 +12,7 @@ var request = require("request");
 // Use native promises
 mongoose.Promise = global.Promise;
 
-var uri = "mongodb://localhost/newsApp";
+var uri = "mongodb://heroku_g88cllq1:8uhhad7nlnp5ec075s9o51oe15@ds135912.mlab.com:35912/heroku_g88cllq1" || "mongodb://localhost/newsApp";
 
 mongoose.connect(uri);
 
