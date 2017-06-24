@@ -76,18 +76,18 @@ router.get("/comments/:id", function(req, res) {
 router.get("/scraped", function(req, res) {
 
   // Make a request for The Huffington Post Tech page
-  request("http://www.huffingtonpost.com/topic/tech/", function(error, response, html) {
+  request("http://www.wtvr.com/", function(error, response, html) {
     // Load the html body from request into cheerio
 
     var $ = cheerio.load(html);
     var result = [];
     // For each div with a class of ".entry.no_border"
-    $("div#").each(function(i, element) {
+    $("li.story").each(function(i, element) {
 
       //Find the following elements
-      var title = $(this).children("h3").children("a").text();
+      var title = $(this).children("h4").children("a").text();
       var link = $(this).find("a").attr("href").replace(/^http:\/\//i, 'https://');
-      var image = $(this).find("img").attr("longdesc").replace(/^http:\/\//i, 'https://');
+      var image = $(this).find("img").attr("src").replace(/^http:\/\//i, 'https://');
 
       // If this div has all three components
       if (title && link && image) {
@@ -111,10 +111,10 @@ router.post("/", function(req, res) {
     // If there's an error during this query
     if (err) {
       // Log the error
-      return console.log(err // Otherwise,
-      );
+    console.log(err);
     } else {
       //log results
+      console.log("Success!");
     }
   });
   //this brings the user back to the scraped results (not root page) so they can browse and save more
